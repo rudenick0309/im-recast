@@ -1,11 +1,12 @@
 import React from "react";
 
 const VideoListEntry = (props) => (
-  <a
+  <div
     className="video-list-entry"
     onClick={function (e) {
+      console.log("이벤트 찾자", e.target); //e.target으로 했을때, html태그가 같이 들어오네?
       console.log("최하 엔트리 props", props.onClickEvent);
-      props.onClickEvent();
+      props.onClickEvent(1, 2, 3); //e.target.title과 e.target.desc를 잡아낼수잇으면 state를 변경할수잇을텐데
       e.preventDefault();
     }}
   >
@@ -23,7 +24,7 @@ const VideoListEntry = (props) => (
         {props.data.snippet.description}
       </div>
     </div>
-  </a>
+  </div>
 );
 
 export default VideoListEntry;
