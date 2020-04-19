@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "./Nav";
 import VideoPlayer from "./VideoPlayer";
 import VideoList from "./VideoList";
+import searchYouTube from "../searchYouTube";
 
 import { fakeData } from "./__test__/fakeData";
 // console.log("app에서의 ", fakeData);
