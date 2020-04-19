@@ -4,10 +4,16 @@ const VideoListEntry = (props) => (
   <div
     className="video-list-entry"
     onClick={function (e) {
-      console.log("이벤트 찾자", e.target); //e.target으로 했을때, html태그가 같이 들어오네?
-      console.log("최하 엔트리 props", props.onClickEvent);
-      props.onClickEvent(1, 2, 3); //e.target.title과 e.target.desc를 잡아낼수잇으면 state를 변경할수잇을텐데
+      const parentNodeOfTarget = e.target.parentNode.parentNode;
+
       e.preventDefault();
+      console.log("이벤트 찾자", parentNodeOfTarget); //e.target으로 했을때, html태그가 같이 들어오네?
+      console.log("최하 엔트리 props", props.onClickEvent);
+      props.onClickEvent(
+        parentNodeOfTarget.childNodes[0].childNodes[0].src,
+        parentNodeOfTarget.childNodes[1].childNodes[0].textContent,
+        parentNodeOfTarget.childNodes[1].childNodes[1].textContent
+      ); //e.target.title과 e.target.desc를 잡아낼수잇으면 state를 변경할수잇을텐데
     }}
   >
     {/* {console.log("비디오엔트리 리스트의 프랍", props)} */}

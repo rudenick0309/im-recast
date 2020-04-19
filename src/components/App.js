@@ -39,9 +39,9 @@ class App extends React.Component {
     this.state = {
       entry: fakeData,
       playing: {
+        src: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
         title: "Video Title",
         desc: "Video Description",
-        src: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1",
       },
     };
     console.log("앱 안의 컨스트럭터 ", this.state.entry);
@@ -59,13 +59,13 @@ class App extends React.Component {
         <div className="col-md-5">
           <VideoList
             data={this.state.entry}
-            onClickHandler={function (_title, _desc, _src) {
+            onClickHandler={function (_src, _title, _desc) {
               // e.preventDefault();
               this.setState({
                 playing: {
-                  title: _title, //이쪽에 e.target.title.value하면?
-                  desc: _desc,
                   src: _src,
+                  title: _title,
+                  desc: _desc,
                 },
               });
             }.bind(this)}
