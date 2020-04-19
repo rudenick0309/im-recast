@@ -1,11 +1,22 @@
-import YOUTUBE_API_KEY from "../config/youtube";
+export const searchYouTube = ({ query, max, key }, callback) => {
+  let option = {
+    q: query,
+    part: "snippet",
+    key: key,
+    maxResults: max,
+    type: "video",
+  };
+  let url = "https://www.googleapis.com/youtube/v3/search?";
+  for (let key in option) {
+    url = url + `${key}=${option[key]}&`;
+  }
+  url = url.substr(0, url.length - 1);
 
-export const searchYouTube = (
-  { query, max = 5, key = YOUTUBE_API_KEY },
-  callback
-) => {
-  return fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=
-    ${query}&maxResults=${max}&key=${key}&type=video`)
-    .then((response) => response.json())
-    .then((json) => callback(json.items));
+  // ! fetching
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      return callback(data.items);
+    });
 };
